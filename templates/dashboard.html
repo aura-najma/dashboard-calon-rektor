@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{ url_for('static', filename='css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Home -->
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Nav Item - MCDM Analysis -->
+            <li class="nav-item">
+                <a class="nav-link" href="/mcdm_analysis">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>MCDM Analysis</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="{{ url_for('static', filename='img/undraw_profile.svg') }}">
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Jumlah Calon Rektor</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ unique_candidates_count }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Calon Rektor Rank 1</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ rank_1_candidate }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-trophy fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- First Rector with S3 Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Rektor Terlama dengan S3</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ first_rector_s3 }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Last Rector with S3 Card -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rektor Terbaru yang Mendapatkan S3</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ last_rector_s3 }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart for Bidang Keilmuan Rektor -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Bidang Keilmuan Calon Rektor</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="FieldStudyChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Kesehatan
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Saintek
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Sosial-Humaniora
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
+                            <!-- Card for SKS per Tahun -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah SKS per Tahun</h6>
+                                    <!-- Dropdown for selecting researcher -->
+                                    <select id="researcherSelectSKS" class="form-control w-auto">
+                                        <option value="">Select Researcher</option>
+                                        {% for researcher in unique_researchers %}
+                                            <option value="{{ researcher }}">{{ researcher }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Line chart for SKS per Tahun -->
+                                        <canvas id="sksChart" style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                    <p>Select a researcher from the dropdown above to generate the SKS per year for that researcher.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <!-- Card for SKS Mengajar and Jabatan Fungsional per Tahun -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah SKS Mengajar per Tahun (Dengan Jabatan Fungsional)</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Stacked bar chart for SKS and Jabatan Fungsional per Tahun -->
+                                        <canvas id="sksJabatanChart" style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4">
+                            <!-- Top 5 Kategori Penelitian -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Top 5 Kategori Penelitian</h6>
+                                    <!-- Dropdown for Top 5 Kategori Penelitian -->
+                                    <select id="researcherSelectTop5" class="form-control w-auto">
+                                        <option value="">Select Researcher</option>
+                                        {% for researcher in unique_researchers %}
+                                            <option value="{{ researcher }}">{{ researcher }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Bar chart for Top 5 Categories -->
+                                        <canvas id="categoryChart" style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                    <p>Select a researcher from the dropdown above to generate the top 5 research categories of that researcher.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <!-- WordCloud -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">WordCloud Topik Penelitian</h6>
+                                    <!-- Dropdown for WordCloud -->
+                                    <select id="researcherSelectWordCloud" class="form-control w-auto">
+                                        <option value="">Select Researcher</option>
+                                        {% for researcher in unique_researchers %}
+                                            <option value="{{ researcher }}">{{ researcher }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Adjusted WordCloud Canvas size -->
+                                        <canvas id="wordCloudCanvas" style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                    <p>Select a researcher from the dropdown above to generate a WordCloud of their research topics.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-8">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Kumpulan Penelitian Calon Rektor</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tabelPenelitian" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Judul</th>
+                                                <th>Kategori</th>
+                                                <th>Tahun</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Judul</th>
+                                                <th>Kategori</th>
+                                                <th>Tahun</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {% for penelitian in data_penelitian %}
+                                            <tr>
+                                                <td>{{ penelitian.nama }}</td>
+                                                <td>{{ penelitian.judul }}</td>
+                                                <td>{{ penelitian.kategori }}</td>
+                                                <td>{{ penelitian.tahun }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Bootstrap core JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script src="{{ url_for('static', filename='js/demo/datatables-demo.js') }}"></script>
+<link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ url_for('static', filename='js/sb-admin-2.min.js') }}"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url_for('static', filename='vendor/chart.js/Chart.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/wordcloud"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctx = document.getElementById("FieldStudyChart").getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie', // Using 'pie' type for a standard pie chart
+            data: {
+                labels: ["Kesehatan", "Saintek", "Sosial-Humaniora"],  // Field names
+                datasets: [{
+                    data: [4, 2, 5], // Counts for each field
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],  // Colors for each section
+                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],  // Hover colors
+                    hoverBorderColor: "rgba(234, 236, 244, 1)",  // Border color on hover
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    caretPadding: 10,
+                    callbacks: {
+                        label: function (tooltipItem, chart) {
+                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                            return datasetLabel + ': ' + tooltipItem.yLabel + ' Rectors';  // Show count of rectors
+                        }
+                    }
+                },
+                legend: {
+                    display: false  // Enable the legend
+                },
+            },
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Convert the dataset to a JavaScript variable
+        const penelitianData = {{ penelitian_data | tojson }};
+
+        // Define the list of stopwords to be excluded
+        const stopwords = [
+            'dan', 'di', 'yang', 'dengan', 'antara', 'untuk', 'sebuah', 'pada', 'oleh', 'dari', 'ke', 'atau',
+            'in', 'and', 'or', 'to', 'the', 'from', 'for', 'a', 'of', 'an', 'a', 'at', 'on'
+        ];
+
+        // Function to generate WordCloud based on the selected researcher
+        function generateWordCloud(researcherName) {
+            let filteredTitles = [];
+
+            // If no researcher is selected, use all titles
+            if (researcherName) {
+                // Filter titles by the selected researcher
+                filteredTitles = penelitianData.filter(item => item.nama === researcherName).map(item => item.judul);
+            } else {
+                // If no researcher is selected, use all titles
+                filteredTitles = penelitianData.map(item => item.judul);
+            }
+
+            // Create a text string from the filtered titles
+            const text = filteredTitles.join(" ");
+
+            // Tokenize the text into words
+            const words = text.split(/\s+/).map(word => word.toLowerCase().replace(/[^a-zA-Z]/g, ''));
+
+            // Remove stopwords from the tokenized words
+            const filteredWords = words.filter(word => !stopwords.includes(word));
+
+            // Create a frequency map for words
+            const wordFrequency = {};
+            filteredWords.forEach(function (word) {
+                if (word) {
+                    wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+                }
+            });
+
+            // Convert the word frequency map into an array of word-frequency pairs
+            const wordList = Object.keys(wordFrequency).map(function (word) {
+                return [word, wordFrequency[word]];
+            });
+
+            // Generate WordCloud with adjusted settings
+            WordCloud(document.getElementById('wordCloudCanvas'), {
+                list: wordList,  // Use the word-frequency pairs directly
+                gridSize: 10,
+                weightFactor: 4,  // Increase weight factor to make words bigger
+                fontFamily: 'Nunito',
+                color: 'random-dark',
+                rotateRatio: 0.5,
+                backgroundColor: '#fff',
+                minSize: 5,  // Minimum size for words
+                maxSize: 50   // Maximum size for words
+            });
+        }
+
+        // Event listener for WordCloud dropdown change
+        document.getElementById('researcherSelectWordCloud').addEventListener('change', function () {
+            const selectedResearcher = this.value;
+            generateWordCloud(selectedResearcher);
+        });
+
+        // Generate WordCloud for all titles on initial page load
+        generateWordCloud('');
+    });
+</script>
+<script>
+    // DCOM: Assuming penelitian_kategori is passed dynamically (array of { nama, kategori })
+    const penelitianKategori = {{ penelitian_kategori | tojson }};  // Filtered categories
+    const uniqueResearchers = {{ unique_researchers | tojson }}; // List of researchers
+
+    // Variable to store the last selected researcher
+    let lastSelectedResearcher = '';
+    let categoryChart = null;  // Store the current chart instance
+
+    // Function to generate the bar chart for top 5 categories
+    function generateCategoryChart(selectedResearcher) {
+        // Only update if the selected researcher is different from the last one
+        if (selectedResearcher === lastSelectedResearcher) {
+            return;  // Do nothing if the same researcher is selected again
+        }
+
+        lastSelectedResearcher = selectedResearcher;  // Update the last selected researcher
+
+        // If a chart already exists, destroy it before creating a new one
+        if (categoryChart) {
+            categoryChart.destroy();
+        }
+
+        let filteredData = penelitianKategori;
+
+        // Filter categories by researcher if selected
+        if (selectedResearcher) {
+            filteredData = penelitianKategori.filter(item => item.nama === selectedResearcher);
+        }
+
+        // Count the frequency of each category
+        const categoryCount = {};
+        filteredData.forEach(item => {
+            categoryCount[item.kategori] = (categoryCount[item.kategori] || 0) + 1;
+        });
+
+        // Sort the categories by frequency and get the top 5
+        const sortedCategories = Object.entries(categoryCount)
+            .sort((a, b) => b[1] - a[1])  // Sort by count descending
+            .slice(0, 5);  // Get top 5
+
+        const categories = sortedCategories.map(item => item[0]);
+        const counts = sortedCategories.map(item => item[1]);
+
+        // Create the bar chart
+        var ctx = document.getElementById("categoryChart");
+        categoryChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: categories,
+                datasets: [{
+                    label: 'Top 5 Categories',
+                    backgroundColor: "#4e73df",
+                    borderColor: "#4e73df",
+                    data: counts,
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            maxTicksLimit: 5
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: Math.max(...counts) + 1,
+                            maxTicksLimit: 5,
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    enabled: false,  // Disable tooltips (hover effect)
+                },
+                hover: {
+                    mode: null  // Disable hover effect
+                }
+            }
+        });
+    }
+
+    // Event listener for Top 5 Categories dropdown change
+    document.getElementById('researcherSelectTop5').addEventListener('change', function () {
+        const selectedResearcher = this.value;
+        generateCategoryChart(selectedResearcher);  // Update chart based on selection
+    });
+
+    // Generate the initial chart (for all researchers) when the page loads
+    generateCategoryChart('');
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dataSks = {{ data_sks | tojson }};  // Get data_sks from Flask
+        let sksChart = null;  // Store the chart instance
+        let lastSelectedResearcher = '';  // To track the last selected researcher
+
+        // Function to generate the line chart for SKS per Tahun
+        function generateSksChart(selectedResearcher) {
+            console.log('Selected Researcher:', selectedResearcher); // Debugging: selected researcher
+
+            // If the researcher is the same as the last selected one, do nothing
+            if (selectedResearcher === lastSelectedResearcher) {
+                return;
+            }
+            lastSelectedResearcher = selectedResearcher;  // Update the last selected researcher
+
+            // If a chart already exists, destroy it before creating a new one
+            if (sksChart) {
+                sksChart.destroy();
+                console.log('Previous chart destroyed'); // Debugging: chart destroyed
+            }
+
+            // Filter data based on selected researcher
+            let filteredData = dataSks;
+            if (selectedResearcher) {
+                filteredData = dataSks.filter(item => item.nama === selectedResearcher);
+                console.log('Filtered Data for Researcher:', filteredData); // Debugging: filtered data
+            }
+
+            // If there's no data for the selected researcher, show the data for all researchers
+            if (filteredData.length === 0 && selectedResearcher) {
+                alert('No data found for the selected researcher.');
+                return;
+            }
+
+            // Get the range of years (from the lowest to the highest year)
+            const allYears = filteredData.map(item => item.tahun);
+            console.log('All Years:', allYears); // Debugging: all years in the data
+
+            const minYear = Math.min(...allYears);
+            const maxYear = Math.max(...allYears);
+            console.log('Min Year:', minYear, 'Max Year:', maxYear); // Debugging: min and max year
+
+            // Create an array of all years from minYear to maxYear
+            const years = [];
+            for (let year = minYear; year <= maxYear; year++) {
+                years.push(year);
+            }
+            console.log('Years Array:', years); // Debugging: years array
+
+            // Sum SKS per year (set to 0 if the year is missing)
+            const sksValues = years.map(year => {
+                const yearData = filteredData.filter(item => item.tahun === year);
+                console.log('Year Data for', year, ':', yearData); // Debugging: data for each year
+
+                // Sum the SKS for each year, ensure valid number
+                return yearData.length > 0 ? yearData.reduce((sum, item) => {
+                    // Make sure jumlah sks mengajar is a valid number
+                    const validSks = Number(item['jumlah sks mengajar']);
+                    return !isNaN(validSks) ? sum + validSks : sum;
+                }, 0) : 0;
+            });
+
+            console.log('SKS Values:', sksValues); // Debugging: SKS values per year
+
+            // Create the line chart
+            var ctx = document.getElementById("sksChart");
+            sksChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [{
+                        label: 'Jumlah SKS per Tahun',
+                        data: sksValues,
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHoverRadius: 3,
+                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHitRadius: 10,
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'year'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 10
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function (tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': ' + tooltipItem.yLabel + ' SKS';
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Event listener for the researcher dropdown change
+        document.getElementById('researcherSelectSKS').addEventListener('change', function () {
+            const selectedResearcher = this.value;
+            generateSksChart(selectedResearcher);  // Update chart based on selection
+        });
+
+        // Generate the initial chart for all researchers when the page loads
+        generateSksChart(''); // Default shows SKS per year for all researchers
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dataGabungan = {{ data_gabungan | tojson }};  // Get data_gabungan from Flask
+        let sksJabatanChart = null;  // Store the chart instance
+
+        console.log('Data Gabungan:', dataGabungan);  // Debugging: Verify the data format
+
+        // Function to generate the stacked bar chart for SKS Mengajar per Tahun and Jabatan Fungsional
+        function generateSksJabatanChart() {
+            // Prepare the data for SKS Mengajar per Tahun
+            const allYears = dataGabungan.map(item => item.tahun);
+            const minYear = Math.min(...allYears);
+            const maxYear = Math.max(...allYears);
+
+            // Create an array of all years from minYear to maxYear
+            const years = [];
+            for (let year = minYear; year <= maxYear; year++) {
+                years.push(year);
+            }
+            console.log('Years Array:', years);  // Debugging: years array
+
+            // Initialize an object to store SKS values per year and jabatan fungsional
+            const jabatanSksData = {};
+
+            // Populate jabatanSksData with data for each year and jabatan fungsional
+            years.forEach(year => {
+                jabatanSksData[year] = {};
+            });
+
+            // Fill jabatanSksData with the total SKS for each jabatan per year
+            dataGabungan.forEach(item => {
+                const { tahun, jabatan_fungsional, jumlah_sks_mengajar } = item;
+
+                // Validate jabatan fungsional and handle undefined values
+                const validJabatan = jabatan_fungsional || "Tidak Dikenal";  // Default value if undefined
+
+                if (!jabatanSksData[tahun]) {
+                    jabatanSksData[tahun] = {};
+                }
+
+                jabatanSksData[tahun][validJabatan] = (jabatanSksData[tahun][validJabatan] || 0) + jumlah_sks_mengajar;
+            });
+
+            console.log('Jabatan SKS Data:', jabatanSksData);  // Debugging: jabatan sks data
+
+            // Prepare the datasets for the stacked bar chart
+            const jabatanFungsionalList = Array.from(new Set(dataGabungan.map(item => item.jabatan_fungsional || "Tidak Dikenal")));
+            console.log('Jabatan Fungsional List:', jabatanFungsionalList);  // Debugging: jabatan fungsional list
+
+            const datasets = jabatanFungsionalList.map(jabatan => {
+                return {
+                    label: jabatan,
+                    data: years.map(year => jabatanSksData[year][jabatan] || 0),
+                    backgroundColor: getJabatanColor(jabatan), // Assign colors based on Jabatan Fungsional
+                    stack: 'stack1',
+                };
+            });
+
+            // Create the stacked bar chart
+            var ctx = document.getElementById("sksJabatanChart");
+            sksJabatanChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: years,
+                    datasets: datasets,
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            }
+                        }],
+                        yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                beginAtZero: true,
+                                maxTicksLimit: 5,
+                                padding: 10
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: true
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function (tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': ' + tooltipItem.yLabel + ' SKS';
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Function to assign colors based on Jabatan Fungsional
+        function getJabatanColor(jabatan) {
+            const jabatanColors = {
+                'Lektor Kepala': 'rgba(78, 115, 223, 1)',  // Blue
+                'Lektor': 'rgba(28, 200, 138, 1)',  // Green
+                'Profesor': 'rgba(255, 99, 132, 1)',  // Red
+                'Asisten Ahli': 'rgba(54, 162, 235, 1)',  // Light Blue
+                'Tidak Dikenal': 'rgba(169, 169, 169, 1)'  // Default gray
+            };
+
+            return jabatanColors[jabatan] || jabatanColors['Tidak Dikenal'];
+        }
+
+        // Generate the initial chart when the page loads
+        generateSksJabatanChart(); // Default shows SKS and Jabatan Fungsional per year for all researchers
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        // Mengecek apakah DataTable sudah diinisialisasi pada tabelPenelitian
+        if (!$.fn.dataTable.isDataTable('#tabelPenelitian')) {
+            // Jika belum, inisialisasi DataTable
+            $('#tabelPenelitian').DataTable({
+                paging: true,  // Mengaktifkan pagination
+                pageLength: 5,  // Menampilkan 5 entri per halaman
+                searching: true,  // Mengaktifkan fitur pencarian/filter
+                ordering: true,  // Mengaktifkan sorting berdasarkan kolom
+                order: [[3, 'desc']],  // Urutkan berdasarkan kolom "Tahun" secara menurun (descending) secara default
+                lengthMenu: [5, 10, 25, 50],  // Menentukan jumlah entri yang bisa dipilih per halaman
+            });
+        }
+    });
+</script>
+
+
+
+
+
+</body>
+</html>
