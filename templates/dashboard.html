@@ -265,7 +265,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <!-- Area Chart Jumlah SKS Per Tahun -->
                         <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
@@ -507,6 +507,7 @@
 <script src="{{ url_for('static', filename='js/demo/chart-area-demo.js') }}"></script>
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
+<!-- JS untuk Pie Chart Bidang Keilmuan Rektor -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Ambil data bidang yang dikirim dari Flask
@@ -548,6 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<!-- JS untuk Wordcloud -->
 <script>
  document.addEventListener('DOMContentLoaded', function () {
     // Convert the dataset to a JavaScript variable
@@ -622,6 +624,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+<!-- JS untuk Top 5 Kategori Penelitian -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Ambil data bidang yang dikirim dari Flask
@@ -732,6 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+<!-- JS untuk Area Chart SKS -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const dataSks = {{ data_sks | tojson }};  // Get data_sks from Flask
@@ -899,6 +903,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 </script>
+<!-- JS untuk Multiple Barchart SKS Jabfung-->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Data passed from Flask (assuming it's named sks_data in the template)
@@ -958,9 +963,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 </script>
-
-
-
+<!-- JS untuk Radar Chart-->
 <script>
 // Data yang dikirim dari Flask
 const data_aras = {{ data_aras | tojson }};  // Data yang diterima dari Flask
@@ -1029,6 +1032,7 @@ function generateRadarChart() {
 generateRadarChart();
 
 </script>
+<!-- JS untuk Barchart Universitas S3-->
 <script>
     // Bar Chart for S3 Candidates per University
     var ctx = document.getElementById('universityChart');
@@ -1106,6 +1110,7 @@ generateRadarChart();
         }
     });
 </script>
+<!-- JS untuk Pie Chart Jabfung-->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Ambil data jabatan fungsional yang dikirim dari Flask
@@ -1147,6 +1152,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<!-- JS untuk Line Chart Filter Kategori dan Filter Calon Rektor-->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     // Data passed from Flask to JavaScript
