@@ -62,17 +62,46 @@ def dashboard():
     penelitian_data = df_penelitian[['nama', 'judul']].dropna().to_dict(orient='records')
     penelitian_kategori = df_penelitian[['nama', 'kategori']].dropna().to_dict(orient='records')
     unique_researchers = df_penelitian['nama'].dropna().unique().tolist()
+    kategori_penelitian = df_penelitian['kategori'].dropna().unique().tolist()
+    tahun_penelitian = df_penelitian['tahun'].dropna().unique().tolist()
+
     data_sks = df_sks.to_dict(orient='records')
     data_gabungan = df_gabungan.to_dict(orient='records')
     data_penelitian = df_penelitian.to_dict(orient='records')
-    # Ambil data bidang dan hitung frekuensi tiap bidang
+    # Extract and count the occurrences of each "jabatan fungsional" from your data
+    jabfung_counts = df_jabatan['jabatan fungsional'].value_counts()
+
+    # Prepare labels and values for the pie chart
+    jabfung_labels = jabfung_counts.index.tolist()  # List of unique job titles
+    jabfung_values = jabfung_counts.values.tolist()  # Corresponding count for each job title    bidang_counts = df_jabatan['bidang'].value_counts()
     bidang_counts = df_jabatan['bidang'].value_counts()
 
     # Persiapkan data untuk ditampilkan di chart
     bidang_labels = bidang_counts.index.tolist()
     bidang_values = bidang_counts.values.tolist()
 
-   # Menampilkan halaman utama dengan template index.html
+    df_aras_sorted = df_aras[['Nama', 'aras score', 'rank']].dropna().sort_values(by='rank', ascending=True)
+
+    tabel_aras = df_aras_sorted.to_dict(orient='records')
+    data_aras = df_aras.drop(columns=['aras score', 'rank']).dropna().to_dict(orient='records')
+    unique_candidates_count = df_aras['Nama'].nunique()
+    df_s3 = df_pendidikan[df_pendidikan['jenjang'] == 'S3']
+    
+    # Count the occurrences of each university for S3
+    university_counts = df_s3['perguruan tinggi'].value_counts()
+    university_names = university_counts.index.tolist()
+    university_values = university_counts.values.tolist()
+
+    sks_data = df_gabungan.groupby(['jabatan fungsional', 'tahun'])['jumlah sks mengajar'].sum().reset_index()
+
+    # Extract unique jabatan (job titles) and years before converting the DataFrame to a list
+    jabatan_labels = sks_data['jabatan fungsional'].unique().tolist()
+    years = sks_data['tahun'].unique().tolist()
+
+    # Convert the grouped DataFrame to a list of dictionaries
+    sks_data = sks_data.to_dict(orient='records')
+
+    print(sks_data)
     return render_template('dashboard.html',
                            unique_candidates_count=unique_candidates_count, 
                            rank_1_candidate=rank_1_candidate,
@@ -86,24 +115,39 @@ def dashboard():
                            unique_researchers=unique_researchers,
                            bidang_counts=bidang_counts,
                            bidang_labels=bidang_labels,
-                           bidang_values=bidang_values)
+                           bidang_values=bidang_values,
+                           tabel_aras=tabel_aras,
+                           data_aras=data_aras,
+                           university_names=university_names,
+                           university_values=university_values,
+                           jabfung_labels=jabfung_labels,
+                           jabfung_values=jabfung_values,
+                           jabatan_labels=jabatan_labels,
+                           sks_data=sks_data,
+                           years=years,
+                           kategori_penelitian=kategori_penelitian,
+                           tahun_penelitian=tahun_penelitian)
 
 # Route untuk halaman MCDM Analysis
-@app.route('/mcdm_analysis')
-def mcdm_analysis():
-    df_aras_sorted = df_aras[['Nama', 'aras score', 'rank']].dropna().sort_values(by='rank', ascending=True)
+@app.route('/transparansi_data')
+def transparansi_data():
+    # Convert df_penelitian to list of records (this is correct)
+    data_penelitian = df_penelitian.to_dict(orient='records')
 
-    tabel_aras = df_aras_sorted.to_dict(orient='records')
-    data_aras = df_aras.drop(columns=['aras score', 'rank']).dropna().to_dict(orient='records')
-    unique_candidates_count = df_aras['Nama'].nunique()
-    unique_researchers = df_aras['Nama'].dropna().unique().tolist()
+    # Filter and rename columns in df_s3
+    df_s3 = df_pendidikan[df_pendidikan['jenjang'] == 'S3']
+    df_s3 = df_s3.rename(columns={
+        'perguruan tinggi': 'perguruan_tinggi',
+        'gelar akademik': 'gelar_akademik'
+    })
+    # Convert df_s3 to a list of records after renaming columns
+    df_s3 = df_s3.to_dict(orient='records')
 
-    # Temukan calon rektor dengan rank 1
-    rank_1_candidate = df_aras[df_aras['rank'] == 1]['Nama'].iloc[0]
-    # Menampilkan halaman mcdm_analysis.html
-    return render_template('mcdm_analysis.html', tabel_aras=tabel_aras, 
-                           data_aras=data_aras, unique_candidates_count=unique_candidates_count,
-                           rank_1_candidate=rank_1_candidate, unique_researchers=unique_researchers)
+
+    # Return the rendered template with the data passed in
+    return render_template('transparansi_data.html',  
+                           data_penelitian=data_penelitian,
+                           df_s3=df_s3)
 
 
 # Menjalankan aplikasi

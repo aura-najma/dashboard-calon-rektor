@@ -56,11 +56,11 @@
                 </a>
             </li>
 
-            <!-- Nav Item - MCDM Analysis -->
+            <!-- Nav Item - Transparansi Data -->
             <li class="nav-item">
-                <a class="nav-link" href="/mcdm_analysis">
+                <a class="nav-link" href="/transparansi_data">
                     <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>MCDM Analysis</span>
+                    <span>Transparansi Data </span>
                 </a>
             </li>
 
@@ -84,18 +84,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -121,13 +109,11 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Jumlah Calon Rektor -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
@@ -145,7 +131,7 @@
                             </div>
                         </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
+                        <!-- Calon Rektor Rank 1 -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
@@ -200,35 +186,131 @@
                     </div>
 
                     <!-- Content Row -->
-
                     <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <!-- Hasil Rangking Chart -->
+                        <div class="col-xl-6 col-lg-6">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
+                                <!-- Card Header -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Hasil Pemeringkatan dengan Metode ARAS</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama</th>
+                                                    <th>Aras Score</th>
+                                                    <th>Rank</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for row in tabel_aras %}
+                                                <tr>
+                                                    <td>{{ row.Nama }}</td>
+                                                    <td>{{ row['aras score'] }}</td>
+                                                    <td>{{ row.rank }}</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Radar Chart ARAS -->
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Radar Chart Penelitian Calon Rektor</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Canvas untuk Radar Chart -->
+                                        <canvas id="myRadarChart" style="width: 100%; height: 400px;"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Pie Chart for Jabatan Fungsional Calon Rektor -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Jabatan Fungsional Calon Rektor</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="JabatanChart"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Profesor
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Lektor
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Lektor Kepala
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Area Chart Jumlah SKS Per Tahun -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Kandidat S3 per Universitas</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="universityChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+
+                        <!-- Line Chart Jumlah Penelitian Per Tahun -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Penelitian Per Tahun</h6>
+                                    <!-- Dropdown Filters -->
+                                    <select id="kategoriFilter" class="form-control" style="width: auto; min-width: 150px; margin-right: 10px;" onchange="updateChartData()">
+                                        <option value="">Select Kategori</option>
+                                        {% for kategori in kategori_penelitian %}
+                                            <option value="{{ kategori }}">{{ kategori }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <select id="penelitiFilter" class="form-control" style="width: auto; min-width: 150px;" onchange="updateChartData()">
+                                        <option value="">Select Peneliti</option>
+                                        {% for peneliti in unique_researchers %}
+                                            <option value="{{ peneliti }}">{{ peneliti }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <!-- Line chart for Jumlah Penelitian Per Tahun -->
+                                        <canvas id="penelitianChart" style="width: 100%; height: 400px;"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -240,19 +322,6 @@
                                 <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">Bidang Keilmuan Calon Rektor</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -310,7 +379,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <!-- Stacked bar chart for SKS and Jabatan Fungsional per Tahun -->
+                                        <!-- bar chart for SKS and Jabatan Fungsional per Tahun -->
                                         <canvas id="sksJabatanChart" style="width: 100%; height: 400px;"></canvas>
                                     </div>
                                 </div>
@@ -365,40 +434,6 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                        <!-- DataTales Example -->
-                        <div class="card shadow mb-8">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Kumpulan Penelitian Calon Rektor</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="tabelPenelitian" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Nama Calon </th>
-                                                <th>Judul</th>
-                                                <th>Kategori</th>
-                                                <th>Tahun</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for penelitian in data_penelitian %}
-                                            <tr>
-                                                <td>{{ penelitian.nama }}</td>
-                                                <td>{{ penelitian.judul }}</td>
-                                                <td>{{ penelitian.kategori }}</td>
-                                                <td>{{ penelitian.tahun }}</td>
-                                            </tr>
-                                            {% endfor %}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
 
@@ -866,179 +901,319 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const dataGabungan = {{ data_gabungan | tojson }};  // Get data_gabungan from Flask
-        let sksJabatanChart = null;  // Store the chart instance
+        // Data passed from Flask (assuming it's named sks_data in the template)
+        const sksData = {{ sks_data | tojson }};
+        
+        // Prepare the data for the chart
+        const jabatanLabels = [...new Set(sksData.map(item => item['jabatan fungsional']))]; // Get unique jabatan
+        const tahunLabels = [...new Set(sksData.map(item => item['tahun']))]; // Get unique years
 
-        console.log('Data Gabungan:', dataGabungan);  // Debugging: Verify the data format
-
-        // Function to generate the stacked bar chart for SKS Mengajar per Tahun and Jabatan Fungsional
-        function generateSksJabatanChart() {
-            // Prepare the data for SKS Mengajar per Tahun
-            const allYears = dataGabungan.map(item => item.tahun);
-            const minYear = Math.min(...allYears);
-            const maxYear = Math.max(...allYears);
-
-            // Create an array of all years from minYear to maxYear
-            const years = [];
-            for (let year = minYear; year <= maxYear; year++) {
-                years.push(year);
-            }
-            console.log('Years Array:', years);  // Debugging: years array
-
-            // Initialize an object to store SKS values per year and jabatan fungsional
-            const jabatanSksData = {};
-
-            // Populate jabatanSksData with data for each year and jabatan fungsional
-            years.forEach(year => {
-                jabatanSksData[year] = {};
+        const datasets = jabatanLabels.map((jabatan, index) => {
+            const data = tahunLabels.map(tahun => {
+                // Find the SKS data for each jabatan and tahun
+                const match = sksData.find(item => item['jabatan fungsional'] === jabatan && item['tahun'] === tahun);
+                return match ? match['jumlah sks mengajar'] : 0;  // Return 0 if no match
             });
 
-            // Fill jabatanSksData with the total SKS for each jabatan per year
-            dataGabungan.forEach(item => {
-                const { tahun, jabatan_fungsional, jumlah_sks_mengajar } = item;
+            return {
+                label: jabatan,
+                backgroundColor: getBarColor(index),  // Set color for each jabatan
+                data: data
+            };
+        });
 
-                // Validate jabatan fungsional and handle undefined values
-                const validJabatan = jabatan_fungsional || "Tidak Dikenal";  // Default value if undefined
-
-                if (!jabatanSksData[tahun]) {
-                    jabatanSksData[tahun] = {};
-                }
-
-                jabatanSksData[tahun][validJabatan] = (jabatanSksData[tahun][validJabatan] || 0) + jumlah_sks_mengajar;
-            });
-
-            console.log('Jabatan SKS Data:', jabatanSksData);  // Debugging: jabatan sks data
-
-            // Prepare the datasets for the stacked bar chart
-            const jabatanFungsionalList = Array.from(new Set(dataGabungan.map(item => item.jabatan_fungsional || "Tidak Dikenal")));
-            console.log('Jabatan Fungsional List:', jabatanFungsionalList);  // Debugging: jabatan fungsional list
-
-            const datasets = jabatanFungsionalList.map(jabatan => {
-                return {
-                    label: jabatan,
-                    data: years.map(year => jabatanSksData[year][jabatan] || 0),
-                    backgroundColor: getJabatanColor(jabatan), // Assign colors based on Jabatan Fungsional
-                    stack: 'stack1',
-                };
-            });
-
-            // Create the stacked bar chart
-            var ctx = document.getElementById("sksJabatanChart");
-            sksJabatanChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: years,
-                    datasets: datasets,
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0
+        // Create the bar chart
+        var ctx = document.getElementById("sksJabatanChart").getContext('2d');
+        var sksJabatanChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: tahunLabels,  // X-axis: years
+                datasets: datasets
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
                         }
                     },
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                            gridLines: {
-                                display: false,
-                                drawBorder: false
-                            }
-                        }],
-                        yAxes: [{
-                            stacked: true,
-                            ticks: {
-                                beginAtZero: true,
-                                maxTicksLimit: 5,
-                                padding: 10
-                            },
-                            gridLines: {
-                                color: "rgb(234, 236, 244)",
-                                zeroLineColor: "rgb(234, 236, 244)",
-                                drawBorder: false,
-                                borderDash: [2],
-                                zeroLineBorderDash: [2]
-                            }
-                        }],
-                    },
-                    legend: {
-                        display: true
-                    },
-                    tooltips: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleFontColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function (tooltipItem, chart) {
-                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ': ' + tooltipItem.yLabel + ' SKS';
-                            }
+                    y: {
+                        beginAtZero: true, // Start Y-axis from 0
+                        ticks: {
+                            stepSize: 50  // Set step size for Y-axis
                         }
                     }
+                },
+                legend: {
+                    display: true  // Show the legend for jabatan
                 }
-            });
+            }
+        });
+
+        // Function to assign colors to the bars based on jabatan index
+        function getBarColor(index) {
+            const colors = ['#4e73df', '#1cc88a', '#36b9cc']; // Array of colors
+            return colors[index % colors.length];  // Use modulo to loop through the color array
         }
+    });
+</script>
 
-        // Function to assign colors based on Jabatan Fungsional
-        function getJabatanColor(jabatan) {
-            const jabatanColors = {
-                'Lektor Kepala': 'rgba(78, 115, 223, 1)',  // Blue
-                'Lektor': 'rgba(28, 200, 138, 1)',  // Green
-                'Profesor': 'rgba(255, 99, 132, 1)',  // Red
-                'Asisten Ahli': 'rgba(54, 162, 235, 1)',  // Light Blue
-                'Tidak Dikenal': 'rgba(169, 169, 169, 1)'  // Default gray
-            };
 
-            return jabatanColors[jabatan] || jabatanColors['Tidak Dikenal'];
+
+<script>
+// Data yang dikirim dari Flask
+const data_aras = {{ data_aras | tojson }};  // Data yang diterima dari Flask
+const labels = ["Artikel Ilmiah", "Book Chapter Nasional", "Buku Lainnya", "Buku Referensi", 
+                "Hak Cipta Nasional", "Jurnal Internasional", "Jurnal Internasional Bereputasi", 
+                "Jurnal Nasional", "Jurnal Nasional Terakreditasi", "Koran/Majalah Populer", 
+                "Lain-lain", "Makalah Ilmiah", "Monograf", "Paten Nasional", "Penelitian", 
+                "Pengabdian Masyarakat", "Poster Seminar Internasional", "Prosiding Seminar Internasional", 
+                "Prosiding Seminar Nasional", "Tulisan Ilmiah", "Pendidikan", "SKS Mengajar", "Jabatan Fungsional"];  // Labels
+
+// Fungsi untuk mengambil data penelitian per peneliti
+function getAllData() {
+    console.log("Data ARAS:", data_aras);  // Debugging untuk memeriksa data
+    return data_aras.map(researcher => {
+        return labels.map(label => researcher[label] || 0);  // Mengambil nilai per kategori untuk setiap peneliti
+    });
+}
+
+// Membuat Radar Chart
+function generateRadarChart() {
+    // Ambil data untuk semua peneliti
+    const allData = getAllData();
+    console.log("All Data for Radar Chart:", allData);  // Debugging untuk memeriksa data yang akan ditampilkan
+
+    // Jika data kosong, beri tahu pengguna dan hentikan
+    if (allData.length === 0) {
+        alert("Data tidak ditemukan untuk Radar Chart");
+        return;
+    }
+
+    // Set up canvas untuk Radar Chart
+    var ctx = document.getElementById('myRadarChart').getContext('2d');
+    
+    // Hapus chart lama jika ada
+    if (window.myRadarChart) {
+        window.myRadarChart.destroy();
+    }
+
+    // Membuat radar chart baru
+    window.myRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: labels,  // Kategori penelitian
+            datasets: allData.map((data, index) => ({
+                label: data_aras[index].Nama,  // Nama peneliti
+                data: data,  // Data per peneliti
+                backgroundColor: `rgba(${(index * 50) % 255}, ${(index * 100) % 255}, ${(index * 150) % 255}, 0.2)`,
+                borderColor: `rgba(${(index * 50) % 255}, ${(index * 100) % 255}, ${(index * 150) % 255}, 1)`,
+                borderWidth: 1
+            }))
+        },
+        options: {
+            responsive: true,
+            scales: {
+                r: {
+                    angleLines: { display: true },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
         }
+    });
+}
 
-        // Generate the initial chart when the page loads
-        generateSksJabatanChart(); // Default shows SKS and Jabatan Fungsional per year for all researchers
+// Panggil fungsi untuk menggambar radar chart saat halaman dimuat
+generateRadarChart();
+
+</script>
+<script>
+    // Bar Chart for S3 Candidates per University
+    var ctx = document.getElementById('universityChart');
+    var universityChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ university_names|tojson }},  // List of university names (from Flask context)
+            datasets: [{
+                label: 'Distribusi Universitas Tempat S3 Calon Rektor',
+                backgroundColor: '#4e73df',  // Bar color
+                borderColor: '#4e73df',  // Border color
+                data: {{ university_values|tojson }},  // Corresponding values (number of candidates)
+                hoverBackgroundColor: '#4e73df',  // Matching hover color, making hover effect the same as default bar color
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 25,
+                    top: 25,
+                    bottom: 0
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    },
+                    ticks: {
+                        maxTicksLimit: 10,  // Limit number of ticks
+                        min: 0,  // Set the minimum value of X-axis to 0
+                    },
+                    maxBarThickness: 25,
+                },
+                y: {
+                    ticks: {
+                        min: 0,
+                        max: Math.max(...{{ university_values|tojson }}),  // Dynamically calculate the maximum Y value
+                        maxTicksLimit: 5,
+                        padding: 10,
+                    },
+                    grid: {
+                        color: 'rgb(234, 236, 244)',
+                        zeroLineColor: 'rgb(234, 236, 244)',
+                        drawBorder: false,
+                        borderDash: [2],
+                        zeroLineBorderDash: [2]
+                    }
+                },
+            },
+            legend: {
+                display: false  // Hide the chart legend
+            },
+            tooltips: {
+                titleMarginBottom: 10,
+                titleFontColor: '#6e707e',
+                titleFontSize: 14,
+                backgroundColor: 'rgb(255,255,255)',
+                bodyFontColor: '#858796',
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+                callbacks: {
+                    label: function(tooltipItem) {
+                        return tooltipItem.dataset.label + ': ' + tooltipItem.raw;  // Tooltip formatting
+                    }
+                }
+            }
+        }
     });
 </script>
 <script>
-$(document).ready(function() {
-    // Mengecek apakah DataTable sudah diinisialisasi pada tabelPenelitian
-    if (!$.fn.dataTable.isDataTable('#tabelPenelitian')) {
-        // Jika belum, inisialisasi DataTable
-        $('#tabelPenelitian').DataTable({
-            paging: true,  // Mengaktifkan pagination
-            pageLength: 5,  // Menampilkan 5 entri per halaman
-            searching: true,  // Mengaktifkan fitur pencarian/filter
-            ordering: true,  // Mengaktifkan sorting berdasarkan kolom
-            order: [[3, 'desc']],  // Urutkan berdasarkan kolom "Tahun" secara menurun (descending) secara default
-            lengthMenu: [5, 10, 25, 50],  // Menentukan jumlah entri yang bisa dipilih per halaman
-            columnDefs: [
-                {
-                    targets: [0, 1], // Target columns (e.g., columns for "Nama" and "Kategori")
-                    searchable: true // Make these columns searchable
-                },
-                {
-                    targets: '_all',  // Targets all columns for general search
-                    searchable: true   // Ensure all columns are searchable
-                }
-            ],
-        });
-    }
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil data jabatan fungsional yang dikirim dari Flask
+    const jabfungLabels = {{ jabfung_labels | tojson }};  // Job titles (Jabatan Fungsional)
+    const jabfungValues = {{ jabfung_values | tojson }};  // Number of candidates per job title
+    
+    // Generate pie chart
+    var ctx = document.getElementById("JabatanChart").getContext('2d');  // Corrected canvas ID here
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: jabfungLabels,  // Job titles (e.g., Sosial-Humaniora, Kesehatan, Saintek)
+            datasets: [{
+                data: jabfungValues,  // Counts for each job title
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#ff5733', '#ffc107'],  // Colors for each section
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#c04c3e', '#e8a700'],  // Hover colors
+                hoverBorderColor: "rgba(234, 236, 244, 1)",  // Border color on hover
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
+            },
+            legend: {
+                display: false  // Disable the legend
+            },
+            hover: {
+                mode: null  // Disable hover effects
+            }
+        },
+    });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Data passed from Flask to JavaScript
+    const penelitianData = {{ penelitian_data | tojson }};  // All research data
+    const kategoriPenelitian = {{ kategori_penelitian | tojson }};  // Available research categories
+    const uniqueResearchers = {{ unique_researchers | tojson }};  // Unique researcher names
 
+    // Function to update chart based on selected filters
+    function updateChartData() {
+        // Get selected filters
+        const selectedKategori = document.getElementById('kategoriFilter').value;
+        const selectedPeneliti = document.getElementById('penelitiFilter').value;
 
+        // Filter data based on selected filters
+        let filteredData = penelitianData;
 
+        if (selectedKategori) {
+            filteredData = filteredData.filter(item => item.kategori === selectedKategori);
+        }
 
+        if (selectedPeneliti) {
+            filteredData = filteredData.filter(item => item.nama === selectedPeneliti);
+        }
+
+        // Get the years and count the research articles per year
+        const years = [...new Set(filteredData.map(item => item.tahun))];  // Get unique years
+        const researchCounts = years.map(year => {
+            return filteredData.filter(item => item.tahun === year).length;
+        });
+
+        // Update the chart with filtered data
+        const ctx = document.getElementById('penelitianChart').getContext('2d');
+        const penelitianChart = new Chart(ctx, {
+            type: 'line',  // Line chart
+            data: {
+                labels: years,  // X-axis: years
+                datasets: [{
+                    label: 'Jumlah Penelitian per Tahun',
+                    data: researchCounts,  // Y-axis: research counts
+                    borderColor: '#4e73df',  // Line color
+                    backgroundColor: 'rgba(78, 115, 223, 0.2)',  // Background color (for filled line chart)
+                    fill: true  // Fill the area under the line
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            beginAtZero: true  // Ensure Y-axis starts from 0
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Call updateChartData on page load to display the initial chart
+    updateChartData();
+});
+
+</script>
 
 </body>
 </html>

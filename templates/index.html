@@ -55,11 +55,11 @@
                 </a>
             </li>
 
-            <!-- Nav Item - MCDM Analysis -->
+            <!-- Nav Item - Transparansi Data -->
             <li class="nav-item">
-                <a class="nav-link" href="/mcdm_analysis">
+                <a class="nav-link" href="/transparansi_data">
                     <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>MCDM Analysis</span>
+                    <span>Transparansi Data</span>
                 </a>
             </li>
 
@@ -86,18 +86,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -123,171 +111,37 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Home</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
-                    <div class="row d-flex align-items-start">
-                        <!-- Left Side (3 Rows) -->
-                        <div class="col-xl-6 col-md-6 mb-4 d-flex flex-column">
+                    <div class="row">
 
-
-                            <!-- Row 1: 2 Cards -->
-                            <div class="row flex-fill">
-                                <!-- Card for Unique Candidates Count -->
-                                <div class="col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                        Jumlah Calon Rektor</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ unique_candidates_count }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-users fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Latar Belakang</h6>
+                                    <p></p>
                                 </div>
-
-                                <!-- Card for Rank 1 Candidate -->
-                                <div class="col-md-6 mb-4">
-                                    <div class="card border-left-success shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                        Calon Rektor Rank 1</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ rank_1_candidate }}</div>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <i class="fas fa-trophy fa-2x text-gray-300"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Row 2: ARAS Weighting Table -->
-                            <div class="row flex-fill">
-                                <!-- ARAS Weighting Table -->
-                                <div class="col-12">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">ARAS Weighting</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <!-- ARAS Weighting Table -->
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Variable</th>
-                                                        <th>Weight (%)</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Penelitian</td>
-                                                        <td>30%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Riwayat Pendidikan</td>
-                                                        <td>20%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Beban SKS yang Diajarkan</td>
-                                                        <td>15%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jabatan Fungsional</td>
-                                                        <td>25%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Berita</td>
-                                                        <td>10%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+                                <div class="card-body">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at justo odio. Pellentesque pharetra posuere scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porttitor enim sit amet urna egestas porta. Nulla id convallis ligula. Suspendisse placerat dui sit amet arcu dictum, sed lobortis elit maximus. Integer eget nunc vehicula, rhoncus augue dapibus, mattis turpis. Cras consectetur congue lobortis.
+                                    </p>
+                                    <p>
+                                        Pellentesque ornare libero quis justo dignissim, et lobortis felis luctus. In varius eleifend libero ac mollis. Morbi condimentum quis tortor at euismod. Nam semper felis nunc, ac ullamcorper velit interdum nec. Sed hendrerit nunc id fringilla accumsan. Vestibulum porta aliquet nulla eu dignissim. Morbi finibus metus vel orci convallis gravida. Phasellus ex mauris, laoreet vitae egestas sed, tempor sit amet magna. Mauris a sapien gravida, sagittis felis vel, malesuada urna.
+                                    </p>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Right Side (Charts) -->
-                        <div class="col-xl-6 col-md-6 mb-4 d-flex flex-column">
-                            <!-- Row 1: Penelitian Chart -->
-                            <div class="row flex-fill">
-                                <!-- Penelitian Chart -->
-                                <div class="col-md-12 mb-4">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Penelitian</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="chart-bar pt-4 pb-2">
-                                                <canvas id="top5KategoriPenelitian"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Row 2: Beban SKS Chart -->
-                            <div class="row flex-fill">
-                                <!-- Beban SKS Chart -->
-                                <div class="col-md-12 mb-4">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">Beban SKS yang Diajarkan</h6>
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="chart-pie pt-4 pb-2">
-                                                <canvas id="top5SKSChart"></canvas>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="card shadow mb-4">
+                                <div class="card-body">
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                <div class="row">
-                    <!-- Jabatan Fungsional Chart (Square) -->
-                    <div class="col-md-4 mb-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Jabatan Fungsional Calon Rektor</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="jabatanFungsionalChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Distribusi Universitas Chart (Rectangle) -->
-                    <div class="col-md-8 mb-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Distribusi Universitas Tempat Calon Rektor Menempuh S3</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="chart-bar pt-4 pb-2">
-                                    <canvas id="universityChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                </div>
-                <!-- End Page Content -->
 
 
 
