@@ -65,7 +65,14 @@ def dashboard():
     data_sks = df_sks.to_dict(orient='records')
     data_gabungan = df_gabungan.to_dict(orient='records')
     data_penelitian = df_penelitian.to_dict(orient='records')
-    # Menampilkan halaman utama dengan template index.html
+    # Ambil data bidang dan hitung frekuensi tiap bidang
+    bidang_counts = df_jabatan['bidang'].value_counts()
+
+    # Persiapkan data untuk ditampilkan di chart
+    bidang_labels = bidang_counts.index.tolist()
+    bidang_values = bidang_counts.values.tolist()
+
+   # Menampilkan halaman utama dengan template index.html
     return render_template('dashboard.html',
                            unique_candidates_count=unique_candidates_count, 
                            rank_1_candidate=rank_1_candidate,
@@ -76,7 +83,10 @@ def dashboard():
                            data_sks=data_sks,
                            data_penelitian=data_penelitian,
                            data_gabungan=data_gabungan,
-                           unique_researchers=unique_researchers)
+                           unique_researchers=unique_researchers,
+                           bidang_counts=bidang_counts,
+                           bidang_labels=bidang_labels,
+                           bidang_values=bidang_values)
 
 # Route untuk halaman MCDM Analysis
 @app.route('/mcdm_analysis')

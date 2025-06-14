@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Dashboard Pemilihan Calon Rektor Universitas Airlangga 2025</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -34,7 +34,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Dashboard <sup>2025</sup></div>
             </a>
 
             <!-- Divider -->
@@ -169,7 +169,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Rektor Terlama dengan S3</div>
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Calon Rektor Pertama Yang Mengambil S3</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ first_rector_s3 }}</div>
                                         </div>
                                         <div class="col-auto">
@@ -186,7 +186,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Rektor Terbaru yang Mendapatkan S3</div>
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Calon Rektor Terbaru yang Mengambil S3</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ last_rector_s3 }}</div>
                                         </div>
                                         <div class="col-auto">
@@ -261,13 +261,13 @@
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Kesehatan
+                                            <i class="fas fa-circle text-primary"></i> Sosial-Humaniora
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Saintek
+                                            <i class="fas fa-circle text-success"></i> Kesehatan
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Sosial-Humaniora
+                                            <i class="fas fa-circle text-info"></i> Saintek
                                         </span>
                                     </div>
                                 </div>
@@ -286,7 +286,6 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Jumlah SKS per Tahun</h6>
                                     <!-- Dropdown for selecting researcher -->
                                     <select id="researcherSelectSKS" class="form-control w-auto">
-                                        <option value="">Select Researcher</option>
                                         {% for researcher in unique_researchers %}
                                             <option value="{{ researcher }}">{{ researcher }}</option>
                                         {% endfor %}
@@ -297,7 +296,7 @@
                                         <!-- Line chart for SKS per Tahun -->
                                         <canvas id="sksChart" style="width: 100%; height: 400px;"></canvas>
                                     </div>
-                                    <p>Select a researcher from the dropdown above to generate the SKS per year for that researcher.</p>
+                                    <p>Pilih calon rektor pada dropdown di atas untuk melihat grafik riwayat jumlah sks yang diajarkan calon rektor tersebut.</p>
                                 </div>
                             </div>
 
@@ -329,7 +328,6 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Top 5 Kategori Penelitian</h6>
                                     <!-- Dropdown for Top 5 Kategori Penelitian -->
                                     <select id="researcherSelectTop5" class="form-control w-auto">
-                                        <option value="">Select Researcher</option>
                                         {% for researcher in unique_researchers %}
                                             <option value="{{ researcher }}">{{ researcher }}</option>
                                         {% endfor %}
@@ -340,7 +338,7 @@
                                         <!-- Bar chart for Top 5 Categories -->
                                         <canvas id="categoryChart" style="width: 100%; height: 400px;"></canvas>
                                     </div>
-                                    <p>Select a researcher from the dropdown above to generate the top 5 research categories of that researcher.</p>
+                                    <p>Pilih calon rektor pada dropdown di atas untuk melihat grafik lima kategori penelitian terbanyak yang telah dilakukan calon rektor tersebut.</p>
                                 </div>
                             </div>
                         </div>
@@ -352,7 +350,6 @@
                                     <h6 class="m-0 font-weight-bold text-primary">WordCloud Topik Penelitian</h6>
                                     <!-- Dropdown for WordCloud -->
                                     <select id="researcherSelectWordCloud" class="form-control w-auto">
-                                        <option value="">Select Researcher</option>
                                         {% for researcher in unique_researchers %}
                                             <option value="{{ researcher }}">{{ researcher }}</option>
                                         {% endfor %}
@@ -363,7 +360,7 @@
                                         <!-- Adjusted WordCloud Canvas size -->
                                         <canvas id="wordCloudCanvas" style="width: 100%; height: 400px;"></canvas>
                                     </div>
-                                    <p>Select a researcher from the dropdown above to generate a WordCloud of their research topics.</p>
+                                    <p>Pilih calon rektor pada dropdown di atas untuk melihat WordCloud dari judul penelitian yang telah dilakukan calon rektor tersebut.</p>
                                 </div>
                             </div>
                         </div>
@@ -382,20 +379,12 @@
                                     <table class="table table-bordered" id="tabelPenelitian" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
+                                                <th>Nama Calon </th>
                                                 <th>Judul</th>
                                                 <th>Kategori</th>
                                                 <th>Tahun</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Judul</th>
-                                                <th>Kategori</th>
-                                                <th>Tahun</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             {% for penelitian in data_penelitian %}
                                             <tr>
@@ -484,119 +473,126 @@
 <script src="{{ url_for('static', filename='js/demo/chart-pie-demo.js') }}"></script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var ctx = document.getElementById("FieldStudyChart").getContext('2d');
-        var myPieChart = new Chart(ctx, {
-            type: 'pie', // Using 'pie' type for a standard pie chart
-            data: {
-                labels: ["Kesehatan", "Saintek", "Sosial-Humaniora"],  // Field names
-                datasets: [{
-                    data: [4, 2, 5], // Counts for each field
-                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],  // Colors for each section
-                    hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],  // Hover colors
-                    hoverBorderColor: "rgba(234, 236, 244, 1)",  // Border color on hover
-                }],
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil data bidang yang dikirim dari Flask
+    const bidangLabels = {{ bidang_labels | tojson }};
+    const bidangValues = {{ bidang_values | tojson }};
+    
+    // Generate pie chart
+    var ctx = document.getElementById("FieldStudyChart").getContext('2d');
+    var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: bidangLabels,  // Bidang names (Kesehatan, Saintek, Sosial-Humaniora)
+            datasets: [{
+                data: bidangValues,  // Bidang counts
+                backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],  // Colors for each section
+                hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],  // Hover colors
+                hoverBorderColor: "rgba(234, 236, 244, 1)",  // Border color on hover
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+                backgroundColor: "rgb(255,255,255)",
+                bodyFontColor: "#858796",
+                borderColor: '#dddfeb',
+                borderWidth: 1,
+                xPadding: 15,
+                yPadding: 15,
+                displayColors: false,
+                caretPadding: 10,
             },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
-                    backgroundColor: "rgb(255,255,255)",
-                    bodyFontColor: "#858796",
-                    borderColor: '#dddfeb',
-                    borderWidth: 1,
-                    xPadding: 15,
-                    yPadding: 15,
-                    displayColors: false,
-                    caretPadding: 10,
-                    callbacks: {
-                        label: function (tooltipItem, chart) {
-                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                            return datasetLabel + ': ' + tooltipItem.yLabel + ' Rectors';  // Show count of rectors
-                        }
-                    }
-                },
-                legend: {
-                    display: false  // Enable the legend
-                },
+            legend: {
+                display: false  // Disable the legend
             },
-        });
+            hover: {
+                mode: null  // Disable hover effects
+            }
+        },
     });
+});
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Convert the dataset to a JavaScript variable
-        const penelitianData = {{ penelitian_data | tojson }};
+ document.addEventListener('DOMContentLoaded', function () {
+    // Convert the dataset to a JavaScript variable
+    const penelitianData = {{ penelitian_data | tojson }};
 
-        // Define the list of stopwords to be excluded
-        const stopwords = [
-            'dan', 'di', 'yang', 'dengan', 'antara', 'untuk', 'sebuah', 'pada', 'oleh', 'dari', 'ke', 'atau',
-            'in', 'and', 'or', 'to', 'the', 'from', 'for', 'a', 'of', 'an', 'a', 'at', 'on'
-        ];
+    // Define the list of stopwords to be excluded
+    const stopwords = [
+        'dan', 'di', 'yang', 'dengan', 'antara', 'untuk', 'sebuah', 'pada', 'oleh', 'dari', 'ke', 'atau',
+        'in', 'and', 'or', 'to', 'the', 'from', 'for', 'a', 'of', 'an', 'a', 'at', 'on'
+    ];
 
-        // Function to generate WordCloud based on the selected researcher
-        function generateWordCloud(researcherName) {
-            let filteredTitles = [];
+    // Function to generate WordCloud based on the selected researcher
+    function generateWordCloud(researcherName) {
+        let filteredTitles = [];
 
+        // If no researcher is selected, use all titles
+        if (researcherName) {
+            // Filter titles by the selected researcher
+            filteredTitles = penelitianData.filter(item => item.nama === researcherName).map(item => item.judul);
+        } else {
             // If no researcher is selected, use all titles
-            if (researcherName) {
-                // Filter titles by the selected researcher
-                filteredTitles = penelitianData.filter(item => item.nama === researcherName).map(item => item.judul);
-            } else {
-                // If no researcher is selected, use all titles
-                filteredTitles = penelitianData.map(item => item.judul);
-            }
-
-            // Create a text string from the filtered titles
-            const text = filteredTitles.join(" ");
-
-            // Tokenize the text into words
-            const words = text.split(/\s+/).map(word => word.toLowerCase().replace(/[^a-zA-Z]/g, ''));
-
-            // Remove stopwords from the tokenized words
-            const filteredWords = words.filter(word => !stopwords.includes(word));
-
-            // Create a frequency map for words
-            const wordFrequency = {};
-            filteredWords.forEach(function (word) {
-                if (word) {
-                    wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-                }
-            });
-
-            // Convert the word frequency map into an array of word-frequency pairs
-            const wordList = Object.keys(wordFrequency).map(function (word) {
-                return [word, wordFrequency[word]];
-            });
-
-            // Generate WordCloud with adjusted settings
-            WordCloud(document.getElementById('wordCloudCanvas'), {
-                list: wordList,  // Use the word-frequency pairs directly
-                gridSize: 10,
-                weightFactor: 4,  // Increase weight factor to make words bigger
-                fontFamily: 'Nunito',
-                color: 'random-dark',
-                rotateRatio: 0.5,
-                backgroundColor: '#fff',
-                minSize: 5,  // Minimum size for words
-                maxSize: 50   // Maximum size for words
-            });
+            filteredTitles = penelitianData.map(item => item.judul);
         }
 
-        // Event listener for WordCloud dropdown change
-        document.getElementById('researcherSelectWordCloud').addEventListener('change', function () {
-            const selectedResearcher = this.value;
-            generateWordCloud(selectedResearcher);
+        // Create a text string from the filtered titles
+        const text = filteredTitles.join(" ");
+
+        // Tokenize the text into words
+        const words = text.split(/\s+/).map(word => word.toLowerCase().replace(/[^a-zA-Z]/g, ''));
+
+        // Remove stopwords from the tokenized words
+        const filteredWords = words.filter(word => !stopwords.includes(word));
+
+        // Create a frequency map for words
+        const wordFrequency = {};
+        filteredWords.forEach(function (word) {
+            if (word) {
+                wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+            }
         });
 
-        // Generate WordCloud for all titles on initial page load
-        generateWordCloud('');
+        // Convert the word frequency map into an array of word-frequency pairs
+        const wordList = Object.keys(wordFrequency).map(function (word) {
+            return [word, wordFrequency[word]];
+        });
+
+        // Generate WordCloud with adjusted settings
+        WordCloud(document.getElementById('wordCloudCanvas'), {
+            list: wordList,  // Use the word-frequency pairs directly
+            gridSize: 10,
+            weightFactor: 4,  // Increase weight factor to make words bigger
+            fontFamily: 'Nunito',
+            color: 'random-dark',
+            rotateRatio: 0.5,
+            backgroundColor: '#fff',
+            minSize: 5,  // Minimum size for words
+            maxSize: 50   // Maximum size for words
+        });
+    }
+
+    // Event listener for WordCloud dropdown change
+    document.getElementById('researcherSelectWordCloud').addEventListener('change', function () {
+        const selectedResearcher = this.value;
+        generateWordCloud(selectedResearcher);
     });
+
+    // Set default value to "Dwi Setyawan" and generate the chart when the page loads
+    document.getElementById('researcherSelectWordCloud').value = 'Dwi Setyawan';
+
+    // Generate WordCloud for "Dwi Setyawan" by default when the page loads
+    generateWordCloud('Dwi Setyawan');
+});
+
 </script>
 <script>
-    // DCOM: Assuming penelitian_kategori is passed dynamically (array of { nama, kategori })
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil data bidang yang dikirim dari Flask
     const penelitianKategori = {{ penelitian_kategori | tojson }};  // Filtered categories
     const uniqueResearchers = {{ unique_researchers | tojson }}; // List of researchers
-
+    
     // Variable to store the last selected researcher
     let lastSelectedResearcher = '';
     let categoryChart = null;  // Store the current chart instance
@@ -693,171 +689,180 @@
         generateCategoryChart(selectedResearcher);  // Update chart based on selection
     });
 
-    // Generate the initial chart (for all researchers) when the page loads
-    generateCategoryChart('');
+    // Set "Dwi Setyawan" as the default selected value for the dropdown
+    document.getElementById('researcherSelectTop5').value = 'Dwi Setyawan';
+
+    // Generate the chart for "Dwi Setyawan" by default when the page loads
+    generateCategoryChart('Dwi Setyawan');
+});
+
 </script>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const dataSks = {{ data_sks | tojson }};  // Get data_sks from Flask
-        let sksChart = null;  // Store the chart instance
-        let lastSelectedResearcher = '';  // To track the last selected researcher
+document.addEventListener('DOMContentLoaded', function () {
+    const dataSks = {{ data_sks | tojson }};  // Get data_sks from Flask
+    let sksChart = null;  // Store the chart instance
+    let lastSelectedResearcher = '';  // To track the last selected researcher
 
-        // Function to generate the line chart for SKS per Tahun
-        function generateSksChart(selectedResearcher) {
-            console.log('Selected Researcher:', selectedResearcher); // Debugging: selected researcher
+    // Function to generate the line chart for SKS per Tahun
+    function generateSksChart(selectedResearcher) {
+        console.log('Selected Researcher:', selectedResearcher); // Debugging: selected researcher
 
-            // If the researcher is the same as the last selected one, do nothing
-            if (selectedResearcher === lastSelectedResearcher) {
-                return;
-            }
-            lastSelectedResearcher = selectedResearcher;  // Update the last selected researcher
+        // If the researcher is the same as the last selected one, do nothing
+        if (selectedResearcher === lastSelectedResearcher) {
+            return;
+        }
+        lastSelectedResearcher = selectedResearcher;  // Update the last selected researcher
 
-            // If a chart already exists, destroy it before creating a new one
-            if (sksChart) {
-                sksChart.destroy();
-                console.log('Previous chart destroyed'); // Debugging: chart destroyed
-            }
+        // If a chart already exists, destroy it before creating a new one
+        if (sksChart) {
+            sksChart.destroy();
+            console.log('Previous chart destroyed'); // Debugging: chart destroyed
+        }
 
-            // Filter data based on selected researcher
-            let filteredData = dataSks;
-            if (selectedResearcher) {
-                filteredData = dataSks.filter(item => item.nama === selectedResearcher);
-                console.log('Filtered Data for Researcher:', filteredData); // Debugging: filtered data
-            }
+        // Filter data based on selected researcher
+        let filteredData = dataSks;
+        if (selectedResearcher) {
+            filteredData = dataSks.filter(item => item.nama === selectedResearcher);
+            console.log('Filtered Data for Researcher:', filteredData); // Debugging: filtered data
+        }
 
-            // If there's no data for the selected researcher, show the data for all researchers
-            if (filteredData.length === 0 && selectedResearcher) {
-                alert('No data found for the selected researcher.');
-                return;
-            }
+        // If there's no data for the selected researcher, show the data for all researchers
+        if (filteredData.length === 0 && selectedResearcher) {
+            alert('No data found for the selected researcher.');
+            return;
+        }
 
-            // Get the range of years (from the lowest to the highest year)
-            const allYears = filteredData.map(item => item.tahun);
-            console.log('All Years:', allYears); // Debugging: all years in the data
+        // Get the range of years (from the lowest to the highest year)
+        const allYears = filteredData.map(item => item.tahun);
+        console.log('All Years:', allYears); // Debugging: all years in the data
 
-            const minYear = Math.min(...allYears);
-            const maxYear = Math.max(...allYears);
-            console.log('Min Year:', minYear, 'Max Year:', maxYear); // Debugging: min and max year
+        const minYear = Math.min(...allYears);
+        const maxYear = Math.max(...allYears);
+        console.log('Min Year:', minYear, 'Max Year:', maxYear); // Debugging: min and max year
 
-            // Create an array of all years from minYear to maxYear
-            const years = [];
-            for (let year = minYear; year <= maxYear; year++) {
-                years.push(year);
-            }
-            console.log('Years Array:', years); // Debugging: years array
+        // Create an array of all years from minYear to maxYear
+        const years = [];
+        for (let year = minYear; year <= maxYear; year++) {
+            years.push(year);
+        }
+        console.log('Years Array:', years); // Debugging: years array
 
-            // Sum SKS per year (set to 0 if the year is missing)
-            const sksValues = years.map(year => {
-                const yearData = filteredData.filter(item => item.tahun === year);
-                console.log('Year Data for', year, ':', yearData); // Debugging: data for each year
+        // Sum SKS per year (set to 0 if the year is missing)
+        const sksValues = years.map(year => {
+            const yearData = filteredData.filter(item => item.tahun === year);
+            console.log('Year Data for', year, ':', yearData); // Debugging: data for each year
 
-                // Sum the SKS for each year, ensure valid number
-                return yearData.length > 0 ? yearData.reduce((sum, item) => {
-                    // Make sure jumlah sks mengajar is a valid number
-                    const validSks = Number(item['jumlah sks mengajar']);
-                    return !isNaN(validSks) ? sum + validSks : sum;
-                }, 0) : 0;
-            });
+            // Sum the SKS for each year, ensure valid number
+            return yearData.length > 0 ? yearData.reduce((sum, item) => {
+                // Make sure jumlah sks mengajar is a valid number
+                const validSks = Number(item['jumlah sks mengajar']);
+                return !isNaN(validSks) ? sum + validSks : sum;
+            }, 0) : 0;
+        });
 
-            console.log('SKS Values:', sksValues); // Debugging: SKS values per year
+        console.log('SKS Values:', sksValues); // Debugging: SKS values per year
 
-            // Create the line chart
-            var ctx = document.getElementById("sksChart");
-            sksChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: years,
-                    datasets: [{
-                        label: 'Jumlah SKS per Tahun',
-                        data: sksValues,
-                        lineTension: 0.3,
-                        backgroundColor: "rgba(78, 115, 223, 0.05)",
-                        borderColor: "rgba(78, 115, 223, 1)",
-                        pointRadius: 3,
-                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHoverRadius: 3,
-                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                        pointHitRadius: 10,
-                        pointBorderWidth: 2
-                    }]
+        // Create the line chart
+        var ctx = document.getElementById("sksChart");
+        sksChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: years,
+                datasets: [{
+                    label: 'Jumlah SKS per Tahun',
+                    data: sksValues,
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(78, 115, 223, 0.05)",
+                    borderColor: "rgba(78, 115, 223, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 25,
+                        top: 25,
+                        bottom: 0
+                    }
                 },
-                options: {
-                    maintainAspectRatio: false,
-                    layout: {
-                        padding: {
-                            left: 10,
-                            right: 25,
-                            top: 25,
-                            bottom: 0
+                scales: {
+                    xAxes: [{
+                        time: {
+                            unit: 'year'
+                        },
+                        gridLines: {
+                            display: false,
+                            drawBorder: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 7
                         }
-                    },
-                    scales: {
-                        xAxes: [{
-                            time: {
-                                unit: 'year'
-                            },
-                            gridLines: {
-                                display: false,
-                                drawBorder: false
-                            },
-                            ticks: {
-                                maxTicksLimit: 7
-                            }
-                        }],
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                maxTicksLimit: 5,
-                                padding: 10
-                            },
-                            gridLines: {
-                                color: "rgb(234, 236, 244)",
-                                zeroLineColor: "rgb(234, 236, 244)",
-                                drawBorder: false,
-                                borderDash: [2],
-                                zeroLineBorderDash: [2]
-                            }
-                        }],
-                    },
-                    legend: {
-                        display: false
-                    },
-                    tooltips: {
-                        backgroundColor: "rgb(255,255,255)",
-                        bodyFontColor: "#858796",
-                        titleMarginBottom: 10,
-                        titleFontColor: '#6e707e',
-                        titleFontSize: 14,
-                        borderColor: '#dddfeb',
-                        borderWidth: 1,
-                        xPadding: 15,
-                        yPadding: 15,
-                        displayColors: false,
-                        intersect: false,
-                        mode: 'index',
-                        caretPadding: 10,
-                        callbacks: {
-                            label: function (tooltipItem, chart) {
-                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                                return datasetLabel + ': ' + tooltipItem.yLabel + ' SKS';
-                            }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            maxTicksLimit: 5,
+                            padding: 10
+                        },
+                        gridLines: {
+                            color: "rgb(234, 236, 244)",
+                            zeroLineColor: "rgb(234, 236, 244)",
+                            drawBorder: false,
+                            borderDash: [2],
+                            zeroLineBorderDash: [2]
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    backgroundColor: "rgb(255,255,255)",
+                    bodyFontColor: "#858796",
+                    titleMarginBottom: 10,
+                    titleFontColor: '#6e707e',
+                    titleFontSize: 14,
+                    borderColor: '#dddfeb',
+                    borderWidth: 1,
+                    xPadding: 15,
+                    yPadding: 15,
+                    displayColors: false,
+                    intersect: false,
+                    mode: 'index',
+                    caretPadding: 10,
+                    callbacks: {
+                        label: function (tooltipItem, chart) {
+                            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                            return datasetLabel + ': ' + tooltipItem.yLabel + ' SKS';
                         }
                     }
                 }
-            });
-        }
-
-        // Event listener for the researcher dropdown change
-        document.getElementById('researcherSelectSKS').addEventListener('change', function () {
-            const selectedResearcher = this.value;
-            generateSksChart(selectedResearcher);  // Update chart based on selection
+            }
         });
+    }
 
-        // Generate the initial chart for all researchers when the page loads
-        generateSksChart(''); // Default shows SKS per year for all researchers
+    // Event listener for the researcher dropdown change
+    document.getElementById('researcherSelectSKS').addEventListener('change', function () {
+        const selectedResearcher = this.value;
+        generateSksChart(selectedResearcher);  // Update chart based on selection
     });
+
+    // Set default value to "Dwi Setyawan" and generate the chart when the page loads
+    document.getElementById('researcherSelectSKS').value = 'Dwi Setyawan';
+
+    // Generate the initial chart for "Dwi Setyawan" by default when the page loads
+    generateSksChart('Dwi Setyawan');
+});
+
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -1005,20 +1010,30 @@
     });
 </script>
 <script>
-    $(document).ready(function() {
-        // Mengecek apakah DataTable sudah diinisialisasi pada tabelPenelitian
-        if (!$.fn.dataTable.isDataTable('#tabelPenelitian')) {
-            // Jika belum, inisialisasi DataTable
-            $('#tabelPenelitian').DataTable({
-                paging: true,  // Mengaktifkan pagination
-                pageLength: 5,  // Menampilkan 5 entri per halaman
-                searching: true,  // Mengaktifkan fitur pencarian/filter
-                ordering: true,  // Mengaktifkan sorting berdasarkan kolom
-                order: [[3, 'desc']],  // Urutkan berdasarkan kolom "Tahun" secara menurun (descending) secara default
-                lengthMenu: [5, 10, 25, 50],  // Menentukan jumlah entri yang bisa dipilih per halaman
-            });
-        }
-    });
+$(document).ready(function() {
+    // Mengecek apakah DataTable sudah diinisialisasi pada tabelPenelitian
+    if (!$.fn.dataTable.isDataTable('#tabelPenelitian')) {
+        // Jika belum, inisialisasi DataTable
+        $('#tabelPenelitian').DataTable({
+            paging: true,  // Mengaktifkan pagination
+            pageLength: 5,  // Menampilkan 5 entri per halaman
+            searching: true,  // Mengaktifkan fitur pencarian/filter
+            ordering: true,  // Mengaktifkan sorting berdasarkan kolom
+            order: [[3, 'desc']],  // Urutkan berdasarkan kolom "Tahun" secara menurun (descending) secara default
+            lengthMenu: [5, 10, 25, 50],  // Menentukan jumlah entri yang bisa dipilih per halaman
+            columnDefs: [
+                {
+                    targets: [0, 1], // Target columns (e.g., columns for "Nama" and "Kategori")
+                    searchable: true // Make these columns searchable
+                },
+                {
+                    targets: '_all',  // Targets all columns for general search
+                    searchable: true   // Ensure all columns are searchable
+                }
+            ],
+        });
+    }
+});
 </script>
 
 
